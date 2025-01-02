@@ -32,12 +32,13 @@ const useGames = () => {
       .get<FetchGameResponse>("/games", { signal: controller.signal })
       .then((res) => {
         setGames(res.data.results);
+        setIsLoading(false);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
-      })
-      .finally(() => setIsLoading(false));
+        setIsLoading(false);
+      });
 
     return () => controller.abort();
   }, []);
