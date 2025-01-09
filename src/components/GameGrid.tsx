@@ -17,17 +17,17 @@ const GameGrid = ({ selectedGenre }: GameGridProperties) => {
       {error && <p>{error}</p>}
       {
         <SimpleGrid columns={{ sm: 1, md: 3, lg: 4 }} gap="3">
-          {isLoading
-            ? skeletons.map((skeleton) => (
-                <GameCardContainer key={skeleton}>
-                  <GameCardSkeleton />{" "}
-                </GameCardContainer>
-              ))
-            : data.map((game) => (
-                <GameCardContainer key={game.id}>
-                  <GameCard game={game} />{" "}
-                </GameCardContainer>
-              ))}
+          {isLoading &&
+            skeletons.map((skeleton) => (
+              <GameCardContainer key={skeleton}>
+                <GameCardSkeleton />{" "}
+              </GameCardContainer>
+            ))}
+          {data.map((game) => (
+            <GameCardContainer key={game.id}>
+              <GameCard game={game} />{" "}
+            </GameCardContainer>
+          ))}
         </SimpleGrid>
       }
     </>
