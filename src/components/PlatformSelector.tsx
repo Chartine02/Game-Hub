@@ -1,6 +1,7 @@
 import { Platform } from "@/hooks/useGames";
 import usePlatforms from "@/hooks/usePlatforms";
 import {
+  Box,
   Button,
   MenuContent,
   MenuItem,
@@ -23,24 +24,26 @@ const PlatformSelector = ({
   if (error) return null;
 
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
-        <Button variant="outline">
-          {selectedPlatform?.name || "Platforms"} <BiChevronDown />{" "}
-        </Button>
-      </MenuTrigger>
-      <MenuContent width="200px" zIndex={10} position="absolute">
-        {data.map((platform) => (
-          <MenuItem
-            key={platform.id}
-            onClick={() => onSelectPlatform(platform)}
-            value={platform.slug}
-          >
-            {platform.name}
-          </MenuItem>
-        ))}
-      </MenuContent>
-    </MenuRoot>
+    <Box position="relative">
+      <MenuRoot positioning={{placement: 'bottom'}}>
+        <MenuTrigger>
+          <Button variant="outline">
+            {selectedPlatform?.name || "Platforms"} <BiChevronDown />{" "}
+          </Button>
+        </MenuTrigger>
+        <MenuContent position="absolute">
+          {data.map((platform) => (
+            <MenuItem
+              key={platform.id}
+              onClick={() => onSelectPlatform(platform)}
+              value={platform.slug}
+            >
+              {platform.name}
+            </MenuItem>
+          ))}
+        </MenuContent>
+      </MenuRoot>
+    </Box>
   );
 };
 
