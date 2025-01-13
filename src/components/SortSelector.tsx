@@ -8,23 +8,44 @@ import {
 } from "@chakra-ui/react";
 import { BiChevronDown } from "react-icons/bi";
 
-const SortSelector = () => {
+interface SortSelectorProps {
+  onSelectOrder: (sortOrder: string) => void;
+  sortOrder: string;
+}
+
+const SortSelector = ({ onSelectOrder, sortOrder }: SortSelectorProps) => {
+  const sortOrders = [
+    { value: "", label: "Relevance" },
+    { value: "-date", label: "Date added" },
+    { value: "name", label: "Name" },
+    { value: "-release", label: "Release date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average rating" },
+  ];
+
+  const currentSortOrder = sortOrders.find(
+    (order) => order.value === sortOrder
+  );
+
   return (
-    <Box position='relative'>
-      <MenuRoot positioning={{placement: 'bottom'}}>
-        <MenuTrigger  >
+    <Box position="relative">
+      <MenuRoot positioning={{ placement: "bottom" }}>
+        <MenuTrigger>
           <Button variant="outline">
-            Order by: Relevance
+            Order by: {currentSortOrder?.label || "Relevance"}
             <BiChevronDown />{" "}
           </Button>
         </MenuTrigger>
-        <MenuContent position="absolute" >
-          <MenuItem value="names">Relevance</MenuItem>
-          <MenuItem value="date">Date added</MenuItem>
-          <MenuItem value="name">Name </MenuItem>
-          <MenuItem value="date-release">Release date</MenuItem>
-          <MenuItem value="popularity">Popularity</MenuItem>
-          <MenuItem value="averge">Average rating</MenuItem>
+        <MenuContent position="absolute">
+          {sortOrders.map((order) => (
+            <MenuItem
+              key={order.value}
+              value={order.value}
+              onClick={() => onSelectOrder(order.value)}
+            >
+              {order.label}
+            </MenuItem>
+          ))}
         </MenuContent>
       </MenuRoot>
     </Box>
