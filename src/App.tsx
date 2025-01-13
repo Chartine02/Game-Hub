@@ -43,7 +43,7 @@ function App() {
       </Stack>
       <GridItem spaceY={3} area="main">
         <GameHeading gameQuery={gameQuery} />
-        <HStack spaceX={3} marginBottom={5}>
+        <HStack spaceX={3} paddingY={5}>
           <PlatformSelector
             selectedPlatform={gameQuery.platform}
             onSelectPlatform={(platform) =>
