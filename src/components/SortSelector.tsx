@@ -30,7 +30,7 @@ const SortSelector = ({ onSelectOrder, sortOrder }: SortSelectorProps) => {
   return (
     <Box position="relative">
       <MenuRoot positioning={{ placement: "bottom" }}>
-        <MenuTrigger>
+        <MenuTrigger asChild>
           <Button variant="outline">
             Order by: {currentSortOrder?.label || "Relevance"}
             <BiChevronDown />{" "}

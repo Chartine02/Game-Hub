@@ -25,8 +25,8 @@ const PlatformSelector = ({
 
   return (
     <Box position="relative">
-      <MenuRoot positioning={{placement: 'bottom'}}>
-        <MenuTrigger>
+      <MenuRoot positioning={{ placement: "bottom" }}>
+        <MenuTrigger asChild>
           <Button variant="outline">
             {selectedPlatform?.name || "Platforms"} <BiChevronDown />{" "}
           </Button>
